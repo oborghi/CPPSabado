@@ -37,7 +37,9 @@ class Data
 // C++ 11 ou superior
     Data() = default;
 
-    Data(short dia, short mes, short ano);
+    Data(short dia, short mes, short ano){
+        alterar(dia, mes, ano);
+    }
 
     void alterar(short dia, short mes, short ano);
 
@@ -60,6 +62,31 @@ class Data
         return (m_mes == FEVEREIRO) ? 28 + anoBissexto() : 30 + ((m_mes & 1) ^ (m_mes > JULHO));
     }
 
+    int comparar(const Data &dt2) const;
+
+    inline bool operator==(const Data &dt2) const{
+        return comparar(dt2) == 0;
+    }
+
+    inline bool operator!=(const Data &dt2) const{
+        return comparar(dt2) != 0;
+    }
+
+    inline bool operator<(const Data &dt2) const{
+        return comparar(dt2) < 0;
+    }
+
+    inline bool operator>(const Data &dt2) const{
+        return comparar(dt2) > 0;
+    }
+
+    inline bool operator<=(const Data &dt2) const{
+        return comparar(dt2) <= 0;
+    }
+
+    inline bool operator>=(const Data &dt2) const{
+        return comparar(dt2) >= 0;
+    }
 };
 
 #endif // DATA_H
