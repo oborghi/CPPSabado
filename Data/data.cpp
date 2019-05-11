@@ -1,4 +1,9 @@
 #include <data.h>
+#include <iostream>
+
+using namespace std;
+
+//Doxygen
 
 void Data::alterar(short dia, short mes, short ano)
 {
@@ -8,10 +13,16 @@ void Data::alterar(short dia, short mes, short ano)
     validar();
 }
 
-int Data::comparar(const Data &dt2) const
+void Data::imprimir() const
 {
-    if (m_ano != dt2.m_ano)
-        return (m_ano - dt2.m_ano);
-
-    return (m_mes != dt2.m_mes) ? m_mes - dt2.m_mes : m_dia - dt2.m_dia;
+    if(m_ok)
+    {
+        cout << m_dia << '/'
+             << m_mes << '/'
+             << m_ano << '\n';
+    }
+    else
+    {
+        cout << "Data invalida!\n";
+    }
 }
